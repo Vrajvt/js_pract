@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slider</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #slider {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slide {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .slide img {
+        width: 100%;
+        object-fit: cover;
+      }
+
+      button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 0;
+        background-color: transparent;
+        font-weight: bold;
+        font-size: 70px;
+        color: rgba(238, 232, 232, 0.802);
+      }
+      #nextBtn {
+        right: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="slider">
+      <div class="slide">
+        <img src="https://cdni.autocarindia.com/Utils/ImageResizer.ashx?n=https://cdni.autocarindia.com/Features/_New%20Sedans%20%20Sports%20Cars%20Web%20Resized%20%20Watermarked._002.jpeg&c=0" alt="Slide 1" />
+      </div>
+      <div class="slide">
+        <img src="https://cdni.autocarindia.com/utils/ImageResizer.ashx?n=https://cms.haymarketindia.net/model/uploads/modelimages/Lamborghini-Revuelto-010220241506.jpg" alt="Slide 2" />
+      </div>
+      <div class="slide">
+        <img src="https://www.ocregister.com/wp-content/uploads/2023/08/OCR-L-LAMBORGHINI-NEW.jpg?w=1024" alt="Slide 3" />
+      </div>
+      <div class="slide">
+        <img src="https://img.machinedesign.com/files/base/ebm/machinedesign/image/2019/04/machinedesign_13321_link___01_lamborghini_terzo_millennio_side.png?auto=format,compress&fit=fill&fill=blur&w=1200&h=630" alt="Slide 4" />
+      </div>
+      <button id="prevBtn">&#8249;</button>
+      <button id="nextBtn">&#8250;</button>
+    </div>
+
+    <script>
+      const slider = document.getElementById("slider");
+      const slides = document.getElementsByClassName("slide");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      let currentSlide = 0;
+
+      // Function to show the current slide
+      function showSlide() {
+        //     // Hide all slides
+        for (let i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        //     // Show the current slide
+        slides[currentSlide].style.display = "block";
+      }
+
+      //   // Function to go to the previous slide
+      function prevSlide() {
+        currentSlide--;
+        if (currentSlide < 0) {
+          currentSlide = slides.length - 1;
+        }
+        showSlide();
+      }
+
+      //   // Function to go to the next slide
+      function nextSlide() {
+        currentSlide++;
+        if (currentSlide >= slides.length) {
+          currentSlide = 0;
+        }
+        showSlide();
+      }
+
+      //   // Event listeners for the navigation buttons
+      prevBtn.addEventListener("click", prevSlide);
+      nextBtn.addEventListener("click", nextSlide);
+
+      // Show the initial slide
+      showSlide();
+    </script>
+  </body>
+</html>
