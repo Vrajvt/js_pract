@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API</title>
+</head>
+<body>
+    <h2>Name : <span id="name"></span></h2>
+    <h2>country : <span id="country"></span></h2>
+    <h2>localtime : <span id="localtime"></span></h2>
+    <h2>timezone : <span id="timezone"></span></h2>
+    <h2>region : <span id="region"></span></h2>
+    <h2>temp_C : <span id="temp_c"></span></h2>
+
+    <button id="btn">show</button>
+</body>
+</html>
+<script>
+
+    let btn = document.getElementById("btn")
+    btn.addEventListener("click",()=>{
+
+    
+
+    fetch("http://api.weatherapi.com/v1/current.json?key=9fc2a60dc099417ab3e122404241810&q=india&aqi=no")
+    .then((res)=>res.json())
+    .then((data)=>{
+        console.log(data)
+        document.getElementById("name").innerHTML = data.location.name
+        document.getElementById("country").innerHTML = data.location.country
+        document.getElementById("localtime").innerHTML = data.location.localtime
+        document.getElementById("timezone").innerHTML = data.location.tz_id
+        document.getElementById("region").innerHTML = data.location.region
+        document.getElementById("temp_c").innerHTML = data.current.temp_c
+    })
+    .catch((arr)=>arr)
+
+})
+</script>

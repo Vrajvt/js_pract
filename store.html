@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fack Store API</title>
+</head>
+<body>
+    <div id="card"></div>
+</body>
+</html>
+<script>
+    fetch("https://fakestoreapi.com/products")
+    .then((res)=>res.json())
+    .then((data)=>{
+        console.log(data)
+
+        let card = document.getElementById("card")
+        let tr = ""
+
+        data.map((ele,index) => {
+            tr += `
+                <div id="box" style="width: 33.33%;border: 1px solid black;">
+                    <img src="${ele.image}" alt="" width="10%">
+                    <h2>${ele.category}</h2>
+                    <h5>${ele.title}</h5>
+                    <p>${ele.description}</p>
+                    <div><span style="padding-right:20px;">${ele.rating.rate}</span><span>${ele.rating.count}</span></div>
+                </div>
+            `
+        })
+
+        card.innerHTML = tr
+    })
+    .catch((err)=>err)
+</script>
